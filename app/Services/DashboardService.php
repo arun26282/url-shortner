@@ -28,7 +28,7 @@ class DashboardService
             $companies = Company::orderBy('name')->get();
         } elseif ($user->isAdmin())
         {
-            $users = User::where('company_id', $user->company_id)->where('id', '!=', $user->id)->withCount('urls')->paginate(10);
+            $users = User::where('company_id', $user->company_id)->withCount('urls')->paginate(10);
         }
 
         return [

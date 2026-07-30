@@ -18,7 +18,7 @@ class UrlService
             return Url::with('user.company')->latest()->get();
         }
         elseif ($user->isAdmin()) {
-            return $user->company->urls()->with('user')->latest()->get();
+            return $user->company->urls()->where('users.role', 'admin')->with('user')->latest()->get();
         }
 
         return Url::where('user_id', $user->id)->latest()->get();
